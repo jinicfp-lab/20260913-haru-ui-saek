@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>하루의 색</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-art" aria-hidden="true">
+          <span class="sun"></span>
+          <span class="cloud cloud-a"></span>
+          <span class="cloud cloud-b"></span>
+          <span class="hill hill-a"></span>
+          <span class="hill hill-b"></span>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Mood reset planner</p>
+          <h1 id="page-title">하루의 색</h1>
+          <p class="lead">
+            지금 기분과 상황을 고르면, 바로 실행할 수 있는 짧은 회복 루틴과
+            어울리는 음악 검색어를 만들어줘요.
+          </p>
+        </div>
+      </section>
+
+      <section class="planner" aria-label="무드 루틴 만들기">
+        <div class="panel setup-panel">
+          <div class="section-heading compact">
+            <p class="section-kicker">step 1</p>
+            <h2>지금 상태 고르기</h2>
+          </div>
+
+          <div class="mood-grid" id="moodGrid" aria-label="감정 선택"></div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>지금 상황</span>
+              <select id="contextSelect">
+                <option value="home">집에 있어요</option>
+                <option value="work">일/공부 중이에요</option>
+                <option value="outside">밖에 있어요</option>
+                <option value="night">잠들기 전이에요</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>가능한 시간</span>
+              <select id="timeSelect">
+                <option value="5">5분</option>
+                <option value="10" selected>10분</option>
+                <option value="20">20분</option>
+              </select>
+            </label>
+          </div>
+
+          <label class="field full">
+            <span>오늘 해야 하는 일 하나</span>
+            <input id="taskInput" type="text" maxlength="40" placeholder="예: 과제 시작하기, 방 정리, 메일 답장" />
+          </label>
+        </div>
+
+        <div class="panel result-panel" id="resultCard" aria-live="polite">
+          <div class="result-empty" id="emptyState">
+            <p>감정을 하나 선택하면</p>
+            <span>지금 바로 쓸 수 있는 루틴이 만들어져요.</span>
+          </div>
+
+          <div class="result-content hidden" id="resultContent">
+            <div class="result-topline">
+              <span class="mood-chip" id="selectedMood"></span>
+              <button class="icon-button" id="shuffleButton" type="button" aria-label="다른 루틴 보기">↻</button>
+            </div>
+
+            <p class="quote" id="quoteText"></p>
+
+            <div class="focus-box">
+              <span class="mini-label">오늘의 첫 행동</span>
+              <p id="firstActionText"></p>
+            </div>
+
+            <div class="checklist-card">
+              <div class="card-heading">
+                <span class="mini-label">체크 루틴</span>
+                <span id="progressText">0/3 완료</span>
+              </div>
+              <div class="checklist" id="checklist"></div>
+            </div>
+
+            <div class="recommendation-grid">
+              <article class="mini-card">
+                <span class="mini-label">음악 검색어</span>
+                <p id="musicText"></p>
+                <div class="link-row">
+                  <a id="youtubeLink" target="_blank" rel="noreferrer">YouTube</a>
+                  <a id="spotifyLink" target="_blank" rel="noreferrer">Spotify</a>
+                </div>
+              </article>
+
+              <article class="mini-card">
+                <span class="mini-label">상황 팁</span>
+                <p id="contextTipText"></p>
+              </article>
+            </div>
+
+            <label class="field full memo-field">
+              <span>짧은 기록</span>
+              <textarea id="memoInput" rows="3" placeholder="지금 기분이나 하고 싶은 말을 한 줄로 적어보세요."></textarea>
+            </label>
+
+            <div class="actions">
+              <button class="primary-button" id="saveButton" type="button">기록 저장</button>
+              <button class="secondary-button" id="copyButton" type="button">루틴 복사</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="saved-section" aria-labelledby="saved-title">
+        <div class="section-heading compact">
+          <p class="section-kicker">mood log</p>
+          <h2 id="saved-title">내 무드 기록</h2>
+        </div>
+        <div class="saved-list" id="savedList">
+          <p class="saved-empty">아직 저장된 기록이 없어요.</p>
+        </div>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
